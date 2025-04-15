@@ -170,8 +170,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '"100"'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 778b3d4858c398c4896f731ed04e61ad, type: 2}
+  m_sharedMaterial: {fileID: 5973065853022590618, guid: 778b3d4858c398c4896f731ed04e61ad, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -249,9 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8796a085b74bb094a809d49166bcce94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageText: {fileID: 0}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  criticalColor: {r: 1, g: 0, b: 0, a: 1}
-  floatSpeed: 1
-  destroyDelay: 1
-  floatOffset: {x: 0, y: 1, z: 0}
+  _damageText: {fileID: 7418676520912946278}
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _criticalColor: {r: 1, g: 0, b: 0, a: 1}
+  _floatSpeed: 1
+  _destroyDelay: 1
+  _floatOffset: {x: 0, y: 1, z: 0}
