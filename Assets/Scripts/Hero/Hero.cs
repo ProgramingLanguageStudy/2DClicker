@@ -8,6 +8,12 @@ public class Hero : MonoBehaviour
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] HeroStatus _status;
     [SerializeField] HeroView _view;
+    [SerializeField] HeroUpgrader _upgrader;
+
+    public void Initialize()
+    {
+        _upgrader.Initialize();
+    }
 
     public void Attack(Enemy enemy)
     {

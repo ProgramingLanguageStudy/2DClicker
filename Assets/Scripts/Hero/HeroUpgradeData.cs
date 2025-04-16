@@ -18,4 +18,45 @@ public class HeroUpgradeData : ScriptableObject
 
     [SerializeField] string _sumTextFormat;         // 수치 합계 텍스트 표시 형식
     [SerializeField] string _valueTextFormat;       // 업그레이드 수치 텍스트 표시 형식
+
+    //public HeroStatType StatType
+    //{
+    //    get { return _statType; }
+    //}
+    public HeroStatType StatType => _statType;
+    public string UpgradeName => _upgradeName;
+    public string SumTextFormat => _sumTextFormat;
+    public string ValueTextFormat => _valueTextFormat;
+
+    /// <summary>
+    /// 업그레이드 레벨에 따른 업그레이드 수치를 반환해 주는 함수
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
+    public double GetValueByLevel(int level)
+    {
+        if (level <= 0)
+        {
+            return 0;
+        }
+
+        // System.Math.Pow(x, y): x를 y번 제곱한 값을 되돌려 주는 함수
+        // ex. System.Math.Pow(5, 3): 5^3 = 125;
+        return _baseValue * System.Math.Pow(_valueMultiplier, level - 1);
+    }
+
+    /// <summary>
+    /// 현재 업그레이드 레벨에서 다음 업그레이드 레벨로 올라갈 때
+    /// 필요한 골드 비용을 반환해 주는 함수
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
+    public double GetCostByLevel(int level)
+    {
+        if (level <= 0)
+        {
+            return 0;
+        }
+        return _baseCost * System.Math.Pow(_costMultiplier, level);
+    }
 }

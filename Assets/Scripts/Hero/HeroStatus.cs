@@ -42,6 +42,11 @@ public class HeroStatus : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 주인공 캐릭터의 스탯을 증가시켜 주는 함수
+    /// </summary>
+    /// <param name="statType">스탯 종류</param>
+    /// <param name="amount">증가시킬 수치</param>
     public void AddStat(HeroStatType statType, double amount)
     {
         _stats[(int)statType] += amount;

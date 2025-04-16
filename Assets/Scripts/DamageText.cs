@@ -18,8 +18,7 @@ public class DamageText : MonoBehaviour
     {
         _damageText.text = damage.ToString("F0");
         _damageText.color = isCritical ? _criticalColor : _normalColor;
-        _damageText.fontSize = isCritical ? 6 : 4
-            0;
+        _damageText.fontSize = isCritical ? 6 : 4;
 
         _startPos = transform.position;
         StartCoroutine(FloatAndFade());

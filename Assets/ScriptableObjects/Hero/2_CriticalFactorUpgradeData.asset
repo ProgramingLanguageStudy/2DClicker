@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e95417c7fc8354dba8157998099d3c, type: 3}
+  m_Name: 2_CriticalFactorUpgradeData
+  m_EditorClassIdentifier: 
+  _statType: 2
+  _upgradeName: "\uD06C\uB9AC\uD2F0\uCEEC \uC218"
+  _baseValue: 0.1
+  _baseCost: 1000
+  _valueMultiplier: 1
+  _costMultiplier: 1.15
+  _sumTextFormat: "\uD06C\uB9AC\uD2F0\uCEEC \uBC30\uC218: {0:N2}"
+  _valueTextFormat: + {0:N2}

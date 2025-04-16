@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayScene : MonoBehaviour
 {
     [SerializeField] Hero _hero;
+
     [SerializeField] Enemy _enemy;
 
     private void Start()
     {
+        _hero.Initialize();
         _enemy.Initialize();        
     }
     public void Tap()
