@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statType: 0
   _upgradeName: "\uACF5\uACA9\uB825"
-  _baseValue: 1
+  _baseValue: 10
   _baseCost: 10
   _valueMultiplier: 1.1
   _costMultiplier: 1.15

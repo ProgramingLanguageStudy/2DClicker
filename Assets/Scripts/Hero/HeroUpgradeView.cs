@@ -19,12 +19,25 @@ public class HeroUpgradeView : MonoBehaviour
     [SerializeField] TextMeshProUGUI _UpgradeValueText;
 
     HeroUpgradeData _upgradeData;
+    int _currentLevel = 1; // ⭐ 시작 레벨
     public void Initialize(HeroUpgradeData upgradeData)
     {
         _upgradeData = upgradeData;
+        RefreshUI(_currentLevel);
     }
 
-    
+    public void Upgrade()
+    {
+        _currentLevel++;               // ⭐ 레벨업
+        RefreshUI(_currentLevel);      // UI 갱신
+    }
 
-    
+    public void RefreshUI(int level)
+    {
+        _StatNameText.text = _upgradeData.UpgradeName;
+        _StatLvText.text = $"LV.{level}";
+        _StatInfoText.text = string.Format(_upgradeData.SumTextFormat, _upgradeData.GetValueByLevel(level));
+        _UpgradeCostText.text = _upgradeData.GetCostByLevel(level).ToString("F0");
+        _UpgradeValueText.text = string.Format(_upgradeData.ValueTextFormat, _upgradeData.GetValueByLevel(level + 1));
+    }
 }

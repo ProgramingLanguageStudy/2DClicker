@@ -13,6 +13,7 @@ public class HeroUpgrader : MonoBehaviour
 
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] HeroStatus _status;
+    [SerializeField] HeroUpgradeView[] _upgradeViews;
 
     // 임시
     [SerializeField] int[] _upgradeLevels;
@@ -20,6 +21,12 @@ public class HeroUpgrader : MonoBehaviour
     public void Initialize()
     {
         _upgradeLevels = new int[_upgradeDatas.Length];
+
+        for (int i = 0; i < _upgradeDatas.Length; i++)
+        {
+            _upgradeViews[i].Initialize(_upgradeDatas[i]);
+            _upgradeViews[i].RefreshUI(_upgradeLevels[i]);
+        }
     }
 
     public void Upgrade(int statIndex)
@@ -45,5 +52,7 @@ public class HeroUpgrader : MonoBehaviour
         // 업그레이드 수치 적용하기
         double value = upgradeData.GetValueByLevel(level);
         _status.AddStat(statType, value);
+
+        _upgradeViews[statIndex].RefreshUI(level);
     }
 }

@@ -9,10 +9,15 @@ public class PlayScene : MonoBehaviour
 
     [SerializeField] Enemy _enemy;
 
+    [SerializeField] HeroUpgradeData _heroUpgradeData;
+
+    [SerializeField] HeroUpgradeView _heroUpgradeView;
+
     private void Start()
     {
         _hero.Initialize();
-        _enemy.Initialize();        
+        _enemy.Initialize();
+        _heroUpgradeView.Initialize(_heroUpgradeData);
     }
     public void Tap()
     {
