@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 888896347642920871}
   - component: {fileID: 7438984233253223968}
   m_Layer: 5
-  m_Name: StatInfoText
+  m_Name: StatValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,12 +898,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d106192ec7b74409f82bc7737e9461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeData: {fileID: 0}
-  _StatNameText: {fileID: 5834466584977000698}
-  _StatLvText: {fileID: 4427418509996760987}
-  _StatInfoText: {fileID: 7438984233253223968}
-  _UpgradeCostText: {fileID: 4217562694282092220}
-  _UpgradeValueText: {fileID: 562432823513235155}
+  _statNameText: {fileID: 5834466584977000698}
+  _statLvText: {fileID: 4427418509996760987}
+  _statValueText: {fileID: 7438984233253223968}
+  _upgradeCostText: {fileID: 4217562694282092220}
+  _upgradeValueText: {fileID: 562432823513235155}
+  _iconSprite: {fileID: 7320003443889538690}
 --- !u!1 &7065089675892192040
 GameObject:
   m_ObjectHideFlags: 0

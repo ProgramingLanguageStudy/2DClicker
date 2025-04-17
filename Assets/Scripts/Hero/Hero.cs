@@ -24,5 +24,4 @@ public class Hero : MonoBehaviour
 
         _view.Attack();
     }
-
 }

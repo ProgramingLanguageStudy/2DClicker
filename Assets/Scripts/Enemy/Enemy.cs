@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] EnemyStatus _status;
     [SerializeField] EnemyStatusView _statusView;
+    [SerializeField] EnemyView _view;
 
     [Header("----- 데미지 텍스트 관련 -----")]
     [SerializeField] GameObject DamageText;   // 프리팹
@@ -26,8 +27,18 @@ public class Enemy : MonoBehaviour
         _status.TakeDamage(damage);
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);
         _statusView.SetHpText(_status.CurrentHp);
+        if(_status.CurrentHp <= 0)
+        {
+            Die();
+        }
 
         ShowDamageText(damage, isCritical);
+    }
+
+    public void Die()
+    {
+        _view.Dead();
+        Destroy(gameObject, 0.5f); // 애니메이션 끝나고 제거
     }
 
     private void ShowDamageText(double damage, bool isCritical)

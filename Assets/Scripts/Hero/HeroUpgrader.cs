@@ -1,21 +1,21 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// ÁÖÀÎ°ø Ä³¸¯ÅÍÀÇ ¾÷±×·¹ÀÌµå¸¦ ÇØ ÁÖ´Â ¿ªÇÒ
+// ì£¼ì¸ê³µ ìºë¦­í„°ì˜ ì—…ê·¸ë ˆì´ë“œë¥¼ í•´ ì£¼ëŠ” ì—­í• 
 public class HeroUpgrader : MonoBehaviour
 {
-    [Header("----- ¾÷±×·¹ÀÌµå µ¥ÀÌÅÍ -----")]
-    // ÁÖÀÎ°ø Ä³¸¯ÅÍ ¾÷±×·¹ÀÌµå µ¥ÀÌÅÍ ¹è¿­
+    [Header("----- ì—…ê·¸ë ˆì´ë“œ ë°ì´í„° -----")]
+    // ì£¼ì¸ê³µ ìºë¦­í„° ì—…ê·¸ë ˆì´ë“œ ë°ì´í„° ë°°ì—´
     [SerializeField] HeroUpgradeData[] _upgradeDatas;
 
-    [Header("----- ÄÄÆ÷³ÍÆ® ÂüÁ¶ -----")]
+    [Header("----- ì»´í¬ë„ŒíŠ¸ ì°¸ì¡° -----")]
     [SerializeField] HeroStatus _status;
     [SerializeField] HeroUpgradeView[] _upgradeViews;
 
-    // ÀÓ½Ã
+    // ì„ì‹œ
     [SerializeField] int[] _upgradeLevels;
 
     public void Initialize()
@@ -25,7 +25,7 @@ public class HeroUpgrader : MonoBehaviour
         for (int i = 0; i < _upgradeDatas.Length; i++)
         {
             _upgradeViews[i].Initialize(_upgradeDatas[i]);
-            _upgradeViews[i].RefreshUI(_upgradeLevels[i]);
+            _upgradeViews[i].UpdateView(_upgradeLevels[i], _status.GetStat((HeroStatType)i));
         }
     }
 
@@ -39,20 +39,21 @@ public class HeroUpgrader : MonoBehaviour
 
     public void Upgrade(HeroStatType statType)
     {
-        // statTypeÀ» int·Î º¯È¯
+        // statTypeì„ intë¡œ ë³€í™˜
         int statIndex = (int)statType;
 
-        // ¾÷±×·¹ÀÌµå ·¹º§ Áõ°¡
+        // ì—…ê·¸ë ˆì´ë“œ ë ˆë²¨ ì¦ê°€
         _upgradeLevels[statIndex]++;
         int level = _upgradeLevels[statIndex];
 
-        // ¾÷±×·¹ÀÌµå µ¥ÀÌÅÍ °¡Á®¿À±â
+        // ì—…ê·¸ë ˆì´ë“œ ë°ì´í„° ê°€ì ¸ì˜¤ê¸°
         HeroUpgradeData upgradeData = _upgradeDatas[statIndex];
 
-        // ¾÷±×·¹ÀÌµå ¼öÄ¡ Àû¿ëÇÏ±â
+        // ì—…ê·¸ë ˆì´ë“œ ìˆ˜ì¹˜ ì ìš©í•˜ê¸°
         double value = upgradeData.GetValueByLevel(level);
         _status.AddStat(statType, value);
 
-        _upgradeViews[statIndex].RefreshUI(level);
+        // ì—…ê·¸ë ˆì´ë“œ í•­ëª© UI ê°±ì‹ 
+        _upgradeViews[statIndex].UpdateView(level, _status.GetStat(statType));
     }
 }

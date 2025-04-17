@@ -7,4 +7,5 @@ public static class AnimatorParameters
 {
     // const: 상수형(값을 변경시킬 수 없는 변수)
     public const string OnAttack = "OnAttack";
+    public const string OnDead = "OnDead";
 }

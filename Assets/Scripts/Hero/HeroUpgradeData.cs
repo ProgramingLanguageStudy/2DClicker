@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 스크립터블 오브젝트는 우리가 어떤 데이터들을 유니티의 에셋 파일 형태로
 // 사용할 수 있도록 도와주는 기능
@@ -19,6 +20,8 @@ public class HeroUpgradeData : ScriptableObject
     [SerializeField] string _sumTextFormat;         // 수치 합계 텍스트 표시 형식
     [SerializeField] string _valueTextFormat;       // 업그레이드 수치 텍스트 표시 형식
 
+    [SerializeField] Sprite _iconSprite;
+
     //public HeroStatType StatType
     //{
     //    get { return _statType; }
@@ -27,6 +30,7 @@ public class HeroUpgradeData : ScriptableObject
     public string UpgradeName => _upgradeName;
     public string SumTextFormat => _sumTextFormat;
     public string ValueTextFormat => _valueTextFormat;
+    public Sprite IconSprite => _iconSprite;
 
     /// <summary>
     /// 업그레이드 레벨에 따른 업그레이드 수치를 반환해 주는 함수
@@ -53,7 +57,7 @@ public class HeroUpgradeData : ScriptableObject
     /// <returns></returns>
     public double GetCostByLevel(int level)
     {
-        if (level <= 0)
+        if (level < 0)
         {
             return 0;
         }
