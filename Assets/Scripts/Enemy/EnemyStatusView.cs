@@ -23,6 +23,12 @@ public class EnemyStatusView : MonoBehaviour
     public void SetHpText(double curHp)
     {
         //_hpText.text = curHp + "HP";
-        _hpText.text = $"{curHp} HP";
+        //_hpText.text = $"{curHp} HP";
+
+        //string format = "{0:N0} HP";
+        //_hpText.text = Util.ToClikerString(curHp, format);
+
+        string format = "{0:N0} HP";
+        _hpText.text = curHp.ToClikerString(format);
     }
 }

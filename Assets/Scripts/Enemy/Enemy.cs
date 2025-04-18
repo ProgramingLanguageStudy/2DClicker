@@ -31,8 +31,6 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
-
-        ShowDamageText(damage, isCritical);
     }
 
     public void Die()
@@ -41,19 +39,5 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 0.5f); // 애니메이션 끝나고 제거
     }
 
-    private void ShowDamageText(double damage, bool isCritical)
-    {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 2f);
-
-        Vector3 worldPos;
-        RectTransform canvasRect = DamageTextParent.GetComponent<RectTransform>();
-
-        // 스크린 좌표를 월드 좌표로 변환
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRect, screenPos, Camera.main, out worldPos))
-        {
-            GameObject dmgObj = Instantiate(DamageText, worldPos, Quaternion.identity, DamageTextParent);
-            DamageText dmgText = dmgObj.GetComponent<DamageText>();
-            dmgText.Setup(damage, isCritical);
-        }
-    }
+    
 }

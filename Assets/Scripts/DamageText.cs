@@ -5,38 +5,62 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _damageText;
-    [SerializeField] private Color _normalColor = Color.white;
-    [SerializeField] private Color _criticalColor = Color.red;
-    [SerializeField] private float _floatSpeed = 1f;
-    [SerializeField] private float _destroyDelay = 1f;
-    [SerializeField] private Vector3 _floatOffset = new Vector3(0, 1f, 0);
+    HeroUpgradeData _upgradeData;
 
-    private Vector3 _startPos;
+    public float moveSpeed = 30f;         // 위로 올라가는 속도
+    public float fadeDuration = 1f;       // 사라지는 데 걸리는 시간
+
+    private TextMeshProUGUI text;
+    private Color startColor;
+    private float elapsed;
+
+    private void Awake()
+    {
+        text = GetComponent<TextMeshProUGUI>();
+        startColor = text.color;
+    }
+
+    private void OnEnable()
+    {
+        // 초기화
+        elapsed = 0f;
+        text.color = startColor;
+        transform.localPosition = Vector3.zero; // 부모 기준 (0, 0, 0) 위치
+    }
+
+    void Update()
+    {
+        // 위로 이동
+        transform.localPosition += Vector3.up * moveSpeed * Time.deltaTime;
+
+        // 투명도 점점 줄이기
+        elapsed += Time.deltaTime;
+        float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+        text.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+
+        // 일정 시간 후 비활성화
+        if (elapsed >= fadeDuration)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void Setup(double damage, bool isCritical)
     {
-        _damageText.text = damage.ToString("F0");
-        _damageText.color = isCritical ? _criticalColor : _normalColor;
-        _damageText.fontSize = isCritical ? 6 : 4;
+        text = GetComponent<TextMeshProUGUI>();
 
-        _startPos = transform.position;
-        StartCoroutine(FloatAndFade());
-    }
+        // 텍스트 설정
+        text.text = damage.ToClikerString(_upgradeData.SumTextFormat); // 천단위 콤마 포함
 
-    private IEnumerator FloatAndFade()
-    {
-        float elapsed = 0f;
+        // 크리티컬 여부에 따라 색상 다르게
+        if (isCritical)
+            text.color = Color.red;
+        else
+            text.color = Color.white;
 
-        while (elapsed < _destroyDelay)
-        {
-            float t = elapsed / _destroyDelay;
-            transform.position = _startPos + _floatOffset * t;
-
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        Destroy(gameObject);
+        // 초기화
+        elapsed = 0f;
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1f);
+        transform.localPosition = Vector3.zero;
     }
 }

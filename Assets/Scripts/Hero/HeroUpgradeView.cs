@@ -49,6 +49,7 @@ public class HeroUpgradeView : MonoBehaviour
     /// <param name="sum"></param>
     public void UpdateView(int level, double sum)
     {
+        // 현재 레벨을 TMP에 표시
         //_statLvText.text = $"LV. " + level;
         //_statLvText.text = $"Lv. {level}";
         //_statLvText.text = string.Format("Lv. {0}", level);
@@ -60,13 +61,17 @@ public class HeroUpgradeView : MonoBehaviour
 
         // 지금까지 업그레이드 능력치 총합을 TMP에 표시
         //_statValueText.text = string.Format("대미지: {0:N2}", sum);
-        _statValueText.text = string.Format(_upgradeData.ValueTextFormat, sum);
+        //_statValueText.text = string.Format(_upgradeData.ValueTextFormat, sum);
+        _statValueText.text = sum.ToClikerString(_upgradeData.SumTextFormat);
 
         // 이번 업그레이드에 필요한 골드 비용을 TMP에 표시
         double cost = _upgradeData.GetCostByLevel(level);
-        _upgradeCostText.text = string.Format(_upgradeCostFormat, cost);
+        //_upgradeCostText.text = string.Format(_upgradeCostFormat, cost);
+        _upgradeCostText.text = cost.ToClikerString(_upgradeCostFormat);
 
         // 이번 업그레이드로 증가될 수치를 TMP에 표시
-        _upgradeValueText.text = string.Format(_upgradeData.ValueTextFormat, _upgradeData.GetValueByLevel(level + 1));
+        //_upgradeValueText.text = string.Format(_upgradeData.ValueTextFormat, _upgradeData.GetValueByLevel(level + 1));
+        double value = _upgradeData.GetValueByLevel(level + 1);
+        _upgradeValueText.text = value.ToClikerString(_upgradeData.ValueTextFormat);
     }
 }
