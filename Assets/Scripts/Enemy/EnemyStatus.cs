@@ -37,6 +37,8 @@ public class EnemyStatus : MonoBehaviour
     [SerializeField] double _maxHp;     // 최대 체력
     [SerializeField] double _currentHp; // 현재 체력
 
+    [SerializeField] Enemy _enemy;
+
     // 프로퍼티
     public string EnemyName
     {
@@ -54,17 +56,18 @@ public class EnemyStatus : MonoBehaviour
     public double MaxHp => _maxHp;
     public double CurrentHp => _currentHp;
 
-    
+
     // float형: 3.14f
     // double형: 3.14
 
-    public void TakeDamage(double damage)
+    public void TakeDamage(double damage, bool isCritical)
     {
         _currentHp -= damage;
-        if(_currentHp<0)
+
+        if (_currentHp < 0)
         {
             _currentHp = 0;
         }
     }
-    
+
 }
