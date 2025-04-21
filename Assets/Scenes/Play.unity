@@ -356,7 +356,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &374144514
 RectTransform:
@@ -377,6 +377,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &379042924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 379042925}
+  m_Layer: 0
+  m_Name: DamageViewPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &379042925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379042924}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1335606314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495792615
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +977,7 @@ MonoBehaviour:
   _enemyName: "\uACE0\uBE14\uB9B0"
   _maxHp: 1000
   _currentHp: 1000
+  _enemy: {fileID: 924586818}
 --- !u!114 &924586818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,6 +993,8 @@ MonoBehaviour:
   _status: {fileID: 924586817}
   _statusView: {fileID: 114739340}
   _view: {fileID: 924586819}
+  _damageViewSpawner: {fileID: 1797404861}
+  _damageViewPoint: {fileID: 379042925}
   _damageTextPrefab: {fileID: 134802428204616056, guid: b2626415d047fb4488c07cbeb6fa76a2, type: 3}
   _damageTextParent: {fileID: 374144514}
 --- !u!114 &924586819
@@ -1331,7 +1365,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 379042925}
   m_Father: {fileID: 924586815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1335606315
@@ -2342,6 +2377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797404859}
   - component: {fileID: 1797404860}
+  - component: {fileID: 1797404861}
   m_Layer: 0
   m_Name: PlayScene
   m_TagString: Untagged
@@ -2380,6 +2416,20 @@ MonoBehaviour:
   _enemy: {fileID: 924586818}
   _heroUpgradeData: {fileID: 11400000, guid: fc37d0bb1d8ec9a4ba461f5c2c3f376c, type: 2}
   _heroUpgradeView: {fileID: 2083554394}
+--- !u!114 &1797404861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797404858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb24b0ffe3037e47bf72230a913bb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageViewPrefab: {fileID: 1259326238205277870, guid: b2626415d047fb4488c07cbeb6fa76a2, type: 3}
+  _damageViewParent: {fileID: 374144514}
 --- !u!1 &1857320629
 GameObject:
   m_ObjectHideFlags: 0
