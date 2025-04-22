@@ -6,9 +6,11 @@ using UnityEngine;
 // 유저에게 데미지 텍스트 애니메이션 연출을 보여 주는 역할
 public class DamageView : MonoBehaviour
 {
+    [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] RectTransform _rectTransform;
     [SerializeField] TextMeshProUGUI _text;
 
+    [Header("----- 설정값 -----")]
     // 애니메이션 지속 시간
     [SerializeField] float _duration;
 
@@ -20,6 +22,11 @@ public class DamageView : MonoBehaviour
     private void Start()
     {
         _timer = _duration;
+    }
+
+    public void SetDamageText(double damage)
+    {
+        _text.text = damage.ToClikerString("{0:N0}");
     }
 
     private void Update()

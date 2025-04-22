@@ -6,21 +6,18 @@ using UnityEngine;
 public class PlayScene : MonoBehaviour
 {
     [SerializeField] Hero _hero;
-
-    [SerializeField] Enemy _enemy;
-
+    [SerializeField] Session _session;
     [SerializeField] HeroUpgradeData _heroUpgradeData;
-
     [SerializeField] HeroUpgradeView _heroUpgradeView;
 
     private void Start()
     {
         _hero.Initialize();
-        _enemy.Initialize();
+        _session.Initialize();
         _heroUpgradeView.Initialize(_heroUpgradeData);
     }
     public void Tap()
     {
-        _hero.Attack(_enemy);
+        _hero.Attack(_session.Enemy);
     }
 }

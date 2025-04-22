@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 6063198591282341297}
+  _text: {fileID: 3930060811479483559}
   _duration: 1
 --- !u!95 &7974899669792087414
 Animator:

@@ -30,5 +30,6 @@ public class DamageViewSpawner : MonoBehaviour
             _damageViewParent, screenPos, null, out Vector2 localPoint);
 
         damageView.RectTransform.anchoredPosition = localPoint;
+        damageView.SetDamageText(damage);
     }
 }

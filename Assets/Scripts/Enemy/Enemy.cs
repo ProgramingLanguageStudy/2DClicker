@@ -7,15 +7,24 @@ using UnityEngine.UIElements;
 // 적 캐릭터의 각 기능들을 관리하는(연결해 주는) 역할
 public class Enemy : MonoBehaviour
 {
+    Session _session;
+
+    EnemyStatusView _statusView;
+    DamageViewSpawner _damageViewSpawner;
+
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] EnemyStatus _status;
-    [SerializeField] EnemyStatusView _statusView;
-    [SerializeField] EnemyView _view;
-    [SerializeField] DamageViewSpawner _damageViewSpawner;
     [SerializeField] Transform _damageViewPoint;
+    [SerializeField] EnemyView _view;
 
-    public void Initialize()
+    public void Initialize(Session session, EnemyStatusView statusView, DamageViewSpawner damageViewSpawner, double maxHp)
     {
+        _session = session;
+        _statusView = statusView;
+        _damageViewSpawner = damageViewSpawner;
+
+        _status.Initialize(maxHp);
+
         _statusView.SetNameText(_status.EnemyName);
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);
         _statusView.SetHpText(_status.CurrentHp);
@@ -30,17 +39,22 @@ public class Enemy : MonoBehaviour
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);
         _statusView.SetHpText(_status.CurrentHp);
 
-        if (_status.CurrentHp <= 0)
+        // 데미지 텍스프 표시
+        _damageViewSpawner.SpawnDamageView(_damageViewPoint.position, damage);
+
+        // 사망 판단
+        if (_status.IsAlive == false)
         {
             Die();
         }
-
-        // 데미지 텍스프 표시
-        _damageViewSpawner.SpawnDamageView(_damageViewPoint.position, damage);
     }
 
+    /// <summary>
+    /// 적이 죽는 처리를 해 주는 함수
+    /// </summary>
     public void Die()
     {
+        _session.OnEnemyDeath();
         _view.Dead();
         Destroy(gameObject, 0.5f); // 애니메이션 끝나고 제거
     }
