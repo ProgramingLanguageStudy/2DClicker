@@ -10,9 +10,9 @@ public class Hero : MonoBehaviour
     [SerializeField] HeroView _view;
     [SerializeField] HeroUpgrader _upgrader;
 
-    public void Initialize()
+    public void Initialize(SessionStatus sessionStatus)
     {
-        _upgrader.Initialize();
+        _upgrader.Initialize(sessionStatus, _status);
     }
 
     public void Attack(Enemy enemy)

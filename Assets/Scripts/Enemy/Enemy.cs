@@ -55,8 +55,8 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         _session.OnEnemyDeath();
-        _view.Dead();
-        Destroy(gameObject, 0.5f); // 애니메이션 끝나고 제거
+        // _view.Dead(); // 죽는 애니메이션
+        Destroy(gameObject);
     }
 
     

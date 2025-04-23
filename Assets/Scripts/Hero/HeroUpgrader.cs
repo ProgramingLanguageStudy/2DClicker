@@ -7,19 +7,24 @@ using UnityEngine.UI;
 // 주인공 캐릭터의 업그레이드를 해 주는 역할
 public class HeroUpgrader : MonoBehaviour
 {
+    SessionStatus _sessionStatus;
+    HeroStatus _status;
+
     [Header("----- 업그레이드 데이터 -----")]
     // 주인공 캐릭터 업그레이드 데이터 배열
     [SerializeField] HeroUpgradeData[] _upgradeDatas;
 
     [Header("----- 컴포넌트 참조 -----")]
-    [SerializeField] HeroStatus _status;
     [SerializeField] HeroUpgradeView[] _upgradeViews;
 
-    // 임시
-    [SerializeField] int[] _upgradeLevels;
+    
+    int[] _upgradeLevels;
 
-    public void Initialize()
+    public void Initialize(SessionStatus sessionStatus, HeroStatus status)
     {
+        _sessionStatus = sessionStatus;
+        _status = status;
+
         _upgradeLevels = new int[_upgradeDatas.Length];
 
         for (int i = 0; i < _upgradeDatas.Length; i++)

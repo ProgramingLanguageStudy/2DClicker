@@ -10,6 +10,8 @@ public class Session : MonoBehaviour
 
     [Header("----- 컴포넌트 참조 -----")]
     [SerializeField] SessionStatus _status;
+    [SerializeField] SessionView _view;
+    [SerializeField] Hero _hero;
 
     [Header("----- Enemy 생성 -----")]
     [SerializeField] Enemy[] _enemyPrefabs;                 // 적 프리팹 배열
@@ -24,8 +26,12 @@ public class Session : MonoBehaviour
 
     public void Initialize()
     {
+        _hero.Initialize(_status);
         _status.Initialize(_data);
+        _view.Initialize(_data);
         SpawnEnemy();
+
+        UpdateView();
     }
 
     /// <summary>
@@ -49,5 +55,24 @@ public class Session : MonoBehaviour
     {
         _status.AddKillCount();
         SpawnEnemy();
+
+        UpdateView();
+    }
+
+    /// <summary>
+    /// 유저가 탭 했을 때 주인공이 공격하는 함수
+    /// </summary>
+    public void TapAttack()
+    {
+        _hero.Attack(_enemy);
+    }
+
+    /// <summary>
+    /// SessionView를 갱신하는 함수
+    /// </summary>
+    public void UpdateView()
+    {
+        _view.SetStageIndexText(_status.StageIndex);
+        _view.SetKillCountText(_status.StageKillCount, _status.StageEnemyCount);
     }
 }

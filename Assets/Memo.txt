@@ -1,0 +1,10 @@
+﻿게임 구조
+PlayScene - Session(세션)
+
+Session(세션) - SessionStatus, SessionView, Hero, Enemy, (Ally)
+
+Hero - HeroStatus, HeroView, HeroUpgrader
+
+HeroUpgrader - HeroUpgraderView
+
+Enemy - EnemyStatus, EnemyStatusView

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 152701829
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -105,22 +105,22 @@ MonoBehaviour:
     m_CategoryList:
     - m_Name: 0
       m_Hash: 0
-      m_Sprite: {fileID: 4723107735738678597, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+      m_Sprite: {fileID: 4723107735738678597, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
     - m_Name: 1
       m_Hash: 0
-      m_Sprite: {fileID: -7385789195546760866, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+      m_Sprite: {fileID: -7385789195546760866, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
   - m_Name: Dead
     m_Hash: 0
     m_CategoryList:
     - m_Name: 0
       m_Hash: 0
-      m_Sprite: {fileID: 6991849013916550155, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+      m_Sprite: {fileID: 6991849013916550155, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
     - m_Name: 1
       m_Hash: 0
-      m_Sprite: {fileID: -276728812324164698, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+      m_Sprite: {fileID: -276728812324164698, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
     - m_Name: 2
       m_Hash: 0
-      m_Sprite: {fileID: 3156895337291164288, guid: 8c8013b63c1e48b3bc93020529662be8, type: 3}
+      m_Sprite: {fileID: 3156895337291164288, guid: 222c317db80c4d039cd0cc79e73b2e5a, type: 3}
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 90b0b33df32b15a40a8342a5e676f6a5, type: 3}
 --- !u!114 &4782261970322377084
 MonoBehaviour:
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 8571938017871300465}
   - component: {fileID: 3314650076483209436}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: 3_Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,10 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _status: {fileID: 8571938017871300465}
-  _statusView: {fileID: 0}
-  _view: {fileID: 3314650076483209436}
-  _damageViewSpawner: {fileID: 0}
   _damageViewPoint: {fileID: 2810822113641398628}
+  _view: {fileID: 3314650076483209436}
 --- !u!114 &8571938017871300465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254b1e6c595568d43bba784c457db031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyName: "\uACE0\uBE14\uB9B0"
-  _maxHp: 100000
-  _currentHp: 100000
+  _enemyName: "\uC2AC\uB77C\uC784"
   _enemy: {fileID: 5110730047206025354}
 --- !u!114 &3314650076483209436
 MonoBehaviour:

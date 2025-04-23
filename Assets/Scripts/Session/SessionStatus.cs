@@ -41,7 +41,7 @@ public class SessionStatus : MonoBehaviour
 
     void NextStage()
     {
-        _stageEnemyCount = 0;
+        _stageKillCount = 0;
         _stageIndex++;
         _stageEnemyCount = _data.GetEnemyCountByStage(_stageIndex);
     }
