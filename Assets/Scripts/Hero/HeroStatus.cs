@@ -8,6 +8,7 @@ public enum HeroStatType
     Damage,          // 기본 공격력
     CriticalRate,    // 크리티컬 확률
     CriticalFactor,  // 크리티컬 계수
+    GoldPerSecond,   // 초당 골드 획득량 
 }
 
 // 주인공 캐릭터의 로직을 담당하는 역할
@@ -20,6 +21,7 @@ public class HeroStatus : MonoBehaviour
     public double Damage => _stats[(int)HeroStatType.Damage];
     public double CriticalRate => _stats[(int)HeroStatType.CriticalRate];
     public double CriticalFactor => _stats[(int)HeroStatType.CriticalFactor];
+    public double GoldPerSecond => _stats[(int)HeroStatType.GoldPerSecond];
     
     [SerializeField] bool _isCritical;      // 크리티컬 발생 여부
 
