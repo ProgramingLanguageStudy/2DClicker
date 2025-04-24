@@ -34,8 +34,10 @@ public class EnemyStatus : MonoBehaviour
     // 클리커 게임이기 때문에 숫자가 천문학적으로 커질 수 있어서
     // 더 큰 범위 숫자까지 사용이 가능한 double형을 채택
     [SerializeField] string _enemyName; // 적 캐릭터 이름
-    double _maxHp;     // 최대 체력
-    double _currentHp; // 현재 체력
+    double _maxHp;      // 최대 체력
+    double _currentHp;  // 현재 체력
+
+    double _rewardGold; // 처치 보상 골드
 
     [SerializeField] Enemy _enemy;
 
@@ -55,6 +57,7 @@ public class EnemyStatus : MonoBehaviour
     // 읽기 전용 프로퍼티(어떤 변수를 외부에서 수정은 못 하지만, 읽게는 해 주는 프로퍼티)
     public double MaxHp => _maxHp;
     public double CurrentHp => _currentHp;
+    public double RewardGold => _rewardGold;
 
     public bool IsAlive
     {
@@ -64,12 +67,12 @@ public class EnemyStatus : MonoBehaviour
         }
     }
 
-    public void Initialize(double maxHp)
+    public void Initialize(double maxHp, double rewardGold)
     {
         _maxHp = maxHp;
         _currentHp = _maxHp;
+        _rewardGold = rewardGold;
     }
-
 
     // float형: 3.14f
     // double형: 3.14

@@ -15,5 +15,8 @@ MonoBehaviour:
   _enemyCountByTenStage: 05000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
   _baseHp: 100
   _hpMultiplier: 1.2
+  _baseGold: 10
+  _goldMultiplier: 1.1
   _stageIndexTextFormat: Stage {0}
   _killCountTextFormat: '{0}/{1}'
+  _goldTextFormat: '{0}'

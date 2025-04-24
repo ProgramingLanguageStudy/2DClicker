@@ -17,13 +17,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform _damageViewPoint;
     [SerializeField] EnemyView _view;
 
-    public void Initialize(Session session, EnemyStatusView statusView, DamageViewSpawner damageViewSpawner, double maxHp)
+    public void Initialize(Session session, EnemyStatusView statusView, DamageViewSpawner damageViewSpawner, double maxHp, double rewardGold)
     {
         _session = session;
         _statusView = statusView;
         _damageViewSpawner = damageViewSpawner;
 
-        _status.Initialize(maxHp);
+        _status.Initialize(maxHp, rewardGold);
 
         _statusView.SetNameText(_status.EnemyName);
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        _session.OnEnemyDeath();
+        _session.OnEnemyDeath(_status.RewardGold);
         // _view.Dead(); // 죽는 애니메이션
         Destroy(gameObject);
     }

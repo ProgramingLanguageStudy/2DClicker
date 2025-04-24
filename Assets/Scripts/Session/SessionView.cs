@@ -13,6 +13,7 @@ public class SessionView : MonoBehaviour
 
     public void Initialize(SessionData data)
     {
+        SetGoldText(0);
         _data = data;
     }
 
@@ -35,5 +36,11 @@ public class SessionView : MonoBehaviour
     {
         //_stageKillCountText.text = string.Format("{0}/{1}", killCount, enemyCount);
         _stageKillCountText.text = string.Format(_data.KillCountTextFormat, killCount, enemyCount);
+    }
+
+    public void SetGoldText(double gold)
+    {
+        string format = "{0:N0}";
+        _goldText.text = gold.ToClikerString(format);
     }
 }

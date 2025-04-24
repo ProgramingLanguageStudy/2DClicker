@@ -29,6 +29,9 @@ public class Session : MonoBehaviour
         _hero.Initialize(_status);
         _status.Initialize(_data);
         _view.Initialize(_data);
+
+        _status.OnGoldChanged += _view.SetGoldText;
+
         SpawnEnemy();
 
         UpdateView();
@@ -45,15 +48,17 @@ public class Session : MonoBehaviour
         _enemy = Instantiate(enemyPrefab, _enemySpawnPoint.position, _enemySpawnPoint.rotation);
 
         // this 키워드: 자기 자신 객체를 가리킨다.
-        _enemy.Initialize(this, _enemyStatusView, _damageViewSpawner, _data.GetHpByStage(_status.StageIndex));
+        _enemy.Initialize(this, _enemyStatusView, _damageViewSpawner, _data.GetHpByStage(_status.StageIndex), _data.GetGoldByStage(_status.StageIndex));
     }
 
     /// <summary>
     ///  적이 죽었을 때 실행되는 함수
     /// </summary>
-    public void OnEnemyDeath()
+    public void OnEnemyDeath(double rewardGold)
     {
         _status.AddKillCount();
+        _status.AddGold(rewardGold);
+
         SpawnEnemy();
 
         UpdateView();

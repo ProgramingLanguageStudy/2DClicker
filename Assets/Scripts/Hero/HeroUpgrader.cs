@@ -47,12 +47,20 @@ public class HeroUpgrader : MonoBehaviour
         // statType을 int로 변환
         int statIndex = (int)statType;
 
+        // 업그레이드 데이터 가져오기
+        HeroUpgradeData upgradeData = _upgradeDatas[statIndex];
+
+        double cost = upgradeData.GetCostByLevel(_upgradeLevels[statIndex]);
+
+        // 업그레이드 비용 처리
+        if (_sessionStatus.TryPayGold(cost) == false)
+        {
+            return;
+        }
+
         // 업그레이드 레벨 증가
         _upgradeLevels[statIndex]++;
         int level = _upgradeLevels[statIndex];
-
-        // 업그레이드 데이터 가져오기
-        HeroUpgradeData upgradeData = _upgradeDatas[statIndex];
 
         // 업그레이드 수치 적용하기
         double value = upgradeData.GetValueByLevel(level);

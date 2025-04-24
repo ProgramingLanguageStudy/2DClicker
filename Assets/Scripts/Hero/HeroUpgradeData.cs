@@ -61,6 +61,6 @@ public class HeroUpgradeData : ScriptableObject
         {
             return 0;
         }
-        return _baseCost * System.Math.Pow(_costMultiplier, level);
+        return System.Math.Round(_baseCost * System.Math.Pow(_costMultiplier, level));
     }
 }

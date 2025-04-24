@@ -10,6 +10,9 @@ public class SessionData : ScriptableObject
     [SerializeField] double _baseHp;                // 적의 기본 체력
     [SerializeField] double _hpMultiplier;          // 스테이지당 적의 체력 비율
 
+    [SerializeField] double _baseGold;              // 적 처치 시 기본 골드
+    [SerializeField] double _goldMultiplier;        // 스테이지당 골드 증가 비율
+
     [SerializeField] string _stageIndexTextFormat;  // 스테이지 번호 표시 형식
     [SerializeField] string _killCountTextFormat;   // 적 처치 수 표시 형식
 
@@ -49,5 +52,19 @@ public class SessionData : ScriptableObject
         }
 
         return _baseHp * System.Math.Pow(_hpMultiplier, stageIndex);
+    }
+
+    /// <summary>
+    /// 스테이지 순번(인덱스)에 따른 적의 보상 골드를 반환하는 함수
+    /// </summary>
+    /// <param name="stageIndex"></param>
+    /// <returns></returns>
+    public double GetGoldByStage(int stageIndex)
+    {
+        if (stageIndex < 0)
+        {
+            return 0;
+        }
+        return System.Math.Round(_baseGold * System.Math.Pow(_goldMultiplier, stageIndex));
     }
 }
