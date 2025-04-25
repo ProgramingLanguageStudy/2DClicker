@@ -10,9 +10,28 @@ public class Hero : MonoBehaviour
     [SerializeField] HeroView _view;
     [SerializeField] HeroUpgrader _upgrader;
 
+    List<IHeroSkill> heroSkills = new List<IHeroSkill>();
+
+    
+    void Update()
+    {
+        // 매 프레임마다 스킬 활성화
+        ActivateSkills();
+    }
+
     public void Initialize(SessionStatus sessionStatus)
     {
         _upgrader.Initialize(sessionStatus, _status);
+
+        heroSkills.Add(new AutoAttackSkill(this, sessionStatus.GetComponent<Session>()));
+    }
+
+    public void ActivateSkills()
+    {
+        foreach (var skill in heroSkills)
+        {
+            skill.Use();
+        }
     }
 
     public void Attack(Enemy enemy)
