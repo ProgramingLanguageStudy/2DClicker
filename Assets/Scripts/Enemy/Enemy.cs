@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemyStatus _status;
     [SerializeField] Transform _damageViewPoint;
     [SerializeField] EnemyView _view;
+    [SerializeField] EnemyData _data;
 
     public void Initialize(Session session, EnemyStatusView statusView, DamageViewSpawner damageViewSpawner, double maxHp, double rewardGold)
     {
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
         _statusView = statusView;
         _damageViewSpawner = damageViewSpawner;
 
-        _status.Initialize(maxHp, rewardGold);
+        _status.Initialize(_data, maxHp, rewardGold);
 
         _statusView.SetNameText(_status.EnemyName);
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);

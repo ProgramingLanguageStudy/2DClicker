@@ -30,10 +30,15 @@ C#에서는 프로퍼티가 있어서 Getter, Setter 함수를 따로 만들 필
 
 public class EnemyStatus : MonoBehaviour
 {
+    EnemyData _enemyData;
+
     // float 대신 double형을 쓰는 이유
     // 클리커 게임이기 때문에 숫자가 천문학적으로 커질 수 있어서
     // 더 큰 범위 숫자까지 사용이 가능한 double형을 채택
-    [SerializeField] string _enemyName; // 적 캐릭터 이름
+    string _enemyName;  // 적 캐릭터 이름
+    double _hpFactor;   // 적 체력 배수
+    double _goldFactor; // 적 드랍 골드 배수
+
     double _maxHp;      // 최대 체력
     double _currentHp;  // 현재 체력
 
@@ -46,7 +51,7 @@ public class EnemyStatus : MonoBehaviour
     {
         get
         {
-            return _enemyName;
+            return _enemyData.EnemyName;
         }
         //set
         //{
@@ -67,11 +72,13 @@ public class EnemyStatus : MonoBehaviour
         }
     }
 
-    public void Initialize(double maxHp, double rewardGold)
+    public void Initialize(EnemyData data, double maxHp, double rewardGold)
     {
-        _maxHp = maxHp;
+        _enemyData = data;
+
+        _maxHp = maxHp * _enemyData.HpFactor;
         _currentHp = _maxHp;
-        _rewardGold = rewardGold;
+        _rewardGold = rewardGold * _enemyData.GoldFactor;
     }
 
     // float형: 3.14f

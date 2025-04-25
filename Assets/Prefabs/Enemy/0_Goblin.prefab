@@ -239,10 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _status: {fileID: 8571938017871300465}
-  _statusView: {fileID: 0}
-  _view: {fileID: 3314650076483209436}
-  _damageViewSpawner: {fileID: 0}
   _damageViewPoint: {fileID: 2810822113641398628}
+  _view: {fileID: 3314650076483209436}
+  _data: {fileID: 11400000, guid: caee25a8dffaf854c98f9be2d0120861, type: 2}
 --- !u!114 &8571938017871300465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254b1e6c595568d43bba784c457db031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyName: "\uACE0\uBE14\uB9B0"
-  _maxHp: 100000
-  _currentHp: 100000
   _enemy: {fileID: 5110730047206025354}
 --- !u!114 &3314650076483209436
 MonoBehaviour:

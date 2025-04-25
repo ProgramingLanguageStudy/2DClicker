@@ -12,6 +12,7 @@ public class Session : MonoBehaviour
     [SerializeField] SessionStatus _status;
     [SerializeField] SessionView _view;
     [SerializeField] Hero _hero;
+    [SerializeField] HeroStatus _heroStatus;
 
     [Header("----- Enemy 생성 -----")]
     [SerializeField] Enemy[] _enemyPrefabs;                 // 적 프리팹 배열
@@ -23,6 +24,20 @@ public class Session : MonoBehaviour
     Enemy _enemy;
 
     public Enemy Enemy => _enemy;
+
+    float _autoGoldTimer = 0f;
+    float _autoGoldInterval = 1f;
+
+    void Update()
+    {
+        _autoGoldTimer += Time.deltaTime;
+        if (_autoGoldTimer >= _autoGoldInterval)
+        {
+            _autoGoldTimer = 0f;
+            double autoGold = _heroStatus.GoldPerSecond;
+            _status.AddGold(autoGold);
+        }
+    }
 
     public void Initialize()
     {
@@ -47,8 +62,9 @@ public class Session : MonoBehaviour
         //_enemy = Instantiate(enemyPrefab, _enemySpawnPoint.position, Quaternion.identity);
         _enemy = Instantiate(enemyPrefab, _enemySpawnPoint.position, _enemySpawnPoint.rotation);
 
-        // this 키워드: 자기 자신 객체를 가리킨다.
-        _enemy.Initialize(this, _enemyStatusView, _damageViewSpawner, _data.GetHpByStage(_status.StageIndex), _data.GetGoldByStage(_status.StageIndex));
+        double maxHp = _data.GetHpByStage(_status.StageIndex);
+        double rewardGold = _data.GetGoldByStage(_status.StageIndex);
+        _enemy.Initialize(this, _enemyStatusView, _damageViewSpawner, maxHp, rewardGold);
     }
 
     /// <summary>
