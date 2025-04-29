@@ -37,7 +37,7 @@ public class StackStudy : MonoBehaviour
         text.color = Color.red;
     }
 
-    void Peak()
+    void Peek()
     {
         if (_stack.Count == 0) return; 
 
@@ -78,7 +78,7 @@ public class StackStudy : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Alpha3))
         {
-            Peak();
+            Peek();
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha4))

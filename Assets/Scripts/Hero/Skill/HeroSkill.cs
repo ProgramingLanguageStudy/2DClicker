@@ -1,33 +1,33 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public interface IHeroSkill
 {
-    void Use();  // ¿µ¿õÀÌ ½ºÅ³À» »ç¿ëÇÒ ¶§ È£ÃâµÇ´Â ¸Ş¼­µå
+    void Use();  // ì˜ì›…ì´ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ë•Œ í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
 }
 
 public class AutoAttackSkill : IHeroSkill
 {
     Hero _hero;
-    Session _session;  // SessionÀ» ÂüÁ¶
-    private float _attackInterval = 1f; // 1ÃÊ¸¶´Ù °ø°İ
+    Session _session;  // Sessionì„ ì°¸ì¡°
+    private float _attackInterval = 1f; // 1ì´ˆë§ˆë‹¤ ê³µê²©
     private float _attackTimer = 0f;
 
-    // »ı¼ºÀÚ¿¡¼­ Hero¿Í SessionÀ» ¹ŞÀ½
+    // ìƒì„±ìì—ì„œ Heroì™€ Sessionì„ ë°›ìŒ
     public AutoAttackSkill(Hero hero, Session session)
     {
         _hero = hero;
-        _session = session;  // SessionÀ» ÀúÀå
+        _session = session;  // Sessionì„ ì €ì¥
     }
 
     public void Use()
     {
-        // ÀÚµ¿ °ø°İ ·ÎÁ÷
+        // ìë™ ê³µê²© ë¡œì§
         _attackTimer += Time.deltaTime;
 
         if (_attackTimer >= _attackInterval)
         {
             _attackTimer = 0f;
-            _hero.Attack(_session.Enemy);  // Session¿¡¼­ ÀûÀ» °¡Á®¿Í¼­ °ø°İ
+            _hero.Attack(_session.Enemy);  // Sessionì—ì„œ ì ì„ ê°€ì ¸ì™€ì„œ ê³µê²©
             Debug.Log("Auto Attack!");
         }
     }
