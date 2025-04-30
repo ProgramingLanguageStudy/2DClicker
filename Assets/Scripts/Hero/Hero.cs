@@ -9,38 +9,43 @@ public class Hero : MonoBehaviour
     [SerializeField] HeroStatus _status;
     [SerializeField] HeroView _view;
     [SerializeField] HeroUpgrader _upgrader;
+    [SerializeField] Session _session;
 
-    List<IHeroSkill> heroSkills = new List<IHeroSkill>();
+    // List<IHeroSkill> heroSkills = new List<IHeroSkill>(); // 일단 보류
 
-    
+    AutoAttackSkill _autoAttackSkill;
+    PowerAttackSkill _powerAttackSkill;
+
     void Update()
     {
-        // 매 프레임마다 스킬 활성화
-        ActivateSkills();
+        // 자동 공격만 활성화 (자동 공격은 계속 반복되므로)
+        _autoAttackSkill.Use();
     }
 
-    public void Initialize(SessionStatus sessionStatus)
+    public void Initialize(SessionStatus sessionStatus, Session session)
     {
+        _session = session;
         _upgrader.Initialize(sessionStatus, _status);
 
-        heroSkills.Add(new AutoAttackSkill(this, sessionStatus.GetComponent<Session>()));
+        _autoAttackSkill = new AutoAttackSkill(this, session, _status);
+        _powerAttackSkill = new PowerAttackSkill(this, session, _status, _view);
     }
 
-    public void ActivateSkills()
+    // 파워 어택 스킬 실행
+    public void UsePowerAttackSkill()
     {
-        foreach (var skill in heroSkills)
-        {
-            skill.Use();
-        }
+        _powerAttackSkill.Use();
     }
 
-    public void Attack(Enemy enemy)
+    // 기본 공격(자동 공격)
+    public void UseAutoAttackSkill()
     {
-        double damage = _status.CalculatedDamage;
-        bool isCritical = _status.IsCritical;
+        _autoAttackSkill.Use();
+    }
 
+    public void Attack(Enemy enemy, double damage, bool isCritical)
+    {
         enemy.TakeHit(damage, isCritical);
-
         _view.Attack();
     }
 }

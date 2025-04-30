@@ -41,7 +41,7 @@ public class Session : MonoBehaviour
 
     public void Initialize()
     {
-        _hero.Initialize(_status);
+        _hero.Initialize(_status, this);
         _status.Initialize(_data);
         _view.Initialize(_data);
 
@@ -85,7 +85,7 @@ public class Session : MonoBehaviour
     /// </summary>
     public void TapAttack()
     {
-        _hero.Attack(_enemy);
+        _hero.Attack(_enemy, _heroStatus.Damage, _heroStatus.IsCritical);
     }
 
     /// <summary>

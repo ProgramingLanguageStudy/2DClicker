@@ -18,4 +18,9 @@ public class HeroView : MonoBehaviour
         //_animator.SetTrigger("OnAttack");
         _animator.SetTrigger(AnimatorParameters.OnAttack);
     }
+
+    public void PowerAttackSkill()
+    {
+        _animator.SetTrigger(AnimatorParameters.OnPowerAttack);
+    }
 }
