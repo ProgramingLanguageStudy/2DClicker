@@ -23,7 +23,7 @@ ex. 순서 상관없이 존재 여부만 중요한 경우
 불에 약한 몬스터 종류(슬라임, 앤트, 스켈레톤)
  */
 
-public class HashSet : MonoBehaviour
+public class HashSetStudy : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _outputText;
     [SerializeField] TMP_InputField _inputField;
@@ -45,6 +45,7 @@ public class HashSet : MonoBehaviour
             Debug.Log($"{fruit}은(는) 이미 존재함");
         }
 
+        UpdateText();
     }
 
     public void RemoveFruit()
@@ -57,6 +58,30 @@ public class HashSet : MonoBehaviour
         else
         {
             Debug.Log($"{fruit}은(는) 존재하지 않음");
+        }
+
+        UpdateText();
+    }
+    
+    void CheckContains(string fruit)
+    {
+        bool has = _fruitSet.Contains(fruit);
+        if (has)
+        {
+            Debug.Log($"{fruit}은(는) 존재함");
+        }
+        else
+        {
+            Debug.Log($"{fruit}은(는) 없음");
+        }
+    }
+
+    void UpdateText()
+    {
+        _outputText.text = "과일 목록:\n";
+        foreach(var fruit in _fruitSet)
+        {
+            _outputText.text += $"- {fruit}\n";
         }
     }
 }
