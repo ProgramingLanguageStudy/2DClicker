@@ -1,22 +1,22 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 /*
-µñ¼Å³Ê¸®(Dictionary, »çÀü)
-Key-Value(Å°-°ª) »óÀ¸·Î µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶
-KeyValuePair<TKey, TValue<¶ó´Â ±¸Á¶Ã¼¸¦ »ç¿ë
-ÇÏ³ªÀÇ Å°¿¡ ÇÏ³ªÀÇ °ªÀ» ´ëÀÀ½ÃÅ²´Ù.
+ë”•ì…”ë„ˆë¦¬(Dictionary, ì‚¬ì „)
+Key-Value(í‚¤-ê°’) ìƒìœ¼ë¡œ ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡°
+KeyValuePair<TKey, TValue<ë¼ëŠ” êµ¬ì¡°ì²´ë¥¼ ì‚¬ìš©
+í•˜ë‚˜ì˜ í‚¤ì— í•˜ë‚˜ì˜ ê°’ì„ ëŒ€ì‘ì‹œí‚¨ë‹¤.
 
-List, HashSet°ú ´Ş¸® Key¸¦ ±âÁØÀ¸·Î °ªÀ» ÀúÀåÇÏ°í Ã£´Â´Ù.
-ContainsKey()·Î ¾î¶² KeyÀÇ Á¸Àç À¯¹«¸¦ ºü¸£°Ô È®ÀÎÇÒ ¼ö ÀÖ´Ù.
-(C++ÀÇ unordered_map°ú À¯»ç)
+List, HashSetê³¼ ë‹¬ë¦¬ Keyë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê°’ì„ ì €ì¥í•˜ê³  ì°¾ëŠ”ë‹¤.
+ContainsKey()ë¡œ ì–´ë–¤ Keyì˜ ì¡´ì¬ ìœ ë¬´ë¥¼ ë¹ ë¥´ê²Œ í™•ì¸í•  ìˆ˜ ìˆë‹¤.
+(C++ì˜ unordered_mapê³¼ ìœ ì‚¬)
 
-Ãß°¡ÇÑ µ¥ÀÌÅÍµéÀÇ ¼ø¼­°¡ º¸ÀåµÇÁö´Â ¾Ê´Â´Ù.
+ì¶”ê°€í•œ ë°ì´í„°ë“¤ì˜ ìˆœì„œê°€ ë³´ì¥ë˜ì§€ëŠ” ì•ŠëŠ”ë‹¤.
 
-ex. ÀÌ¸§À¸·Î Á¡¼ö °ü¸®
-¾ÆÀÌÅÛ ID·Î ¾ÆÀÌÅÛ Á¤º¸ Ã£±â
+ex. ì´ë¦„ìœ¼ë¡œ ì ìˆ˜ ê´€ë¦¬
+ì•„ì´í…œ IDë¡œ ì•„ì´í…œ ì •ë³´ ì°¾ê¸°
 */
 
 public class DictionaryStudy : MonoBehaviour
@@ -29,7 +29,7 @@ public class DictionaryStudy : MonoBehaviour
         public string Name => _name;
         public int Score => _score;
 
-        // »ı¼ºÀÚ
+        // ìƒì„±ì
         public Student(string name, int score)
         {
             _name = name;
@@ -46,11 +46,11 @@ public class DictionaryStudy : MonoBehaviour
     [SerializeField] TMP_InputField _keyInputField;
     [SerializeField] TMP_InputField _valueInputField;
 
-    Dictionary<string, Student> _studentsMap
+    Dictionary<string, Student> _studentMap
         = new Dictionary<string, Student> ();
 
     /// <summary>
-    /// ÇĞ»ıÁ¤º¸°¡ ÀÌ¹Ì ÀÖÀ¸¸é °»½ÅÇÏ´Â ÇÔ¼ö
+    /// í•™ìƒì •ë³´ê°€ ì´ë¯¸ ìˆìœ¼ë©´ ê°±ì‹ í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void AddOrUpdateStudent()
     {
@@ -58,38 +58,110 @@ public class DictionaryStudy : MonoBehaviour
         int score = 0;
 
         // int.TryParse()
-        // ¹®ÀÚ¿­À» int·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+        // ë¬¸ìì—´ì„ intë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
         if(int.TryParse(_valueInputField.text, out score) == false)
         {
-            Debug.Log("Á¡¼ö´Â ¼ıÀÚ·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä.");
+            Debug.Log("ì ìˆ˜ëŠ” ìˆ«ìë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”.");
             return;
         }
 
-        // ÀÌ¹ø¿¡ ÀÔ·ÂÇÑ ÇĞ»ı ÀÌ¸§ÀÌ µñ¼Å³Ê¸® Å°¿¡ ¾ø¾úÀ¸¸é
-        if(_studentsMap.ContainsKey(name) == false)
+        // ì´ë²ˆì— ì…ë ¥í•œ í•™ìƒ ì´ë¦„ì´ ë”•ì…”ë„ˆë¦¬ í‚¤ì— ì—†ì—ˆìœ¼ë©´
+        if(_studentMap.ContainsKey(name) == false)
         {
-            // »õ Student °´Ã¼¸¦ »ı¼º
+            // ìƒˆ Student ê°ì²´ë¥¼ ìƒì„±
             Student newStudent = new Student(name, score);
 
-            // µñ¼Å³Ê¸®¿¡ ÀúÀå
-            // (°°Àº key·Î ¶Ç Add()¸¦ ÇÏ·ÁÇÏ¸é ¿¡·¯)
-            _studentsMap.Add(name, newStudent);
+            // ë”•ì…”ë„ˆë¦¬ì— ì €ì¥
+            // (ê°™ì€ keyë¡œ ë˜ Add()ë¥¼ í•˜ë ¤í•˜ë©´ ì—ëŸ¬)
+            //_studentMap.Add(name, newStudent);
 
-            // ¾È³» ¸Ş½ÃÁö Ãâ·Â
-            Debug.Log($"{name} ÇĞ»ıÀÌ µî·ÏµÇ¾ú½À´Ï´Ù. Á¡¼ö: {score}Á¡");
+            // ë§Œì•½ì—, ì´ë¯¸ ìˆëŠ” keyì¸ ê²½ìš°
+            // ê·¸ keyì™€ ì—°ê²°ëœ valueë¥¼ ìˆ˜ì •
+            // ë§Œì•½ì—, ì—†ëŠ” keyì¸ ê²½ìš°
+            // ìƒˆë¡œ keyë¥¼ ë§Œë“¤ì–´ì„œ ê·¸ keyì™€ ì—°ê²°ëœ valueë¥¼ ì„¤ì •
+            _studentMap[name] = newStudent;
+
+            // ì•ˆë‚´ ë©”ì‹œì§€ ì¶œë ¥
+            Debug.Log($"{name} í•™ìƒì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤. ì ìˆ˜: {score}ì ");
         }
 
         else
         {
-            // _studentMap[(keyÀÇ ÀÚ·áÇüÀ» °¡Áø º¯¼ö)]
+            // _studentMap[(keyì˜ ìë£Œí˜•ì„ ê°€ì§„ ë³€ìˆ˜)]
 
-            // µñ¼Å³Ê¸®¿¡¼­ key¸¦ ÀÔ·ÂÇÏ¸é ¹Ù·Î ´ëÀÀÇÏ´Â
-            // vlaue¸¦ ¹Ş¾Æ ¿Ã ¼ö ÀÖ´Ù.
-            // (±âÁ¸¿¡ ¾ø´ø key¿¡ ´ëÀÀÇÏ´Â value¸¦ °¡Á®¿À·Á°í ÇÏ¸é ¿¡·¯)
-            Student student = _studentsMap[name];
+            // ë”•ì…”ë„ˆë¦¬ì—ì„œ keyë¥¼ ì…ë ¥í•˜ë©´ ë°”ë¡œ ëŒ€ì‘í•˜ëŠ”
+            // vlaueë¥¼ ë°›ì•„ ì˜¬ ìˆ˜ ìˆë‹¤.
+            // (ê¸°ì¡´ì— ì—†ë˜ keyì— ëŒ€ì‘í•˜ëŠ” valueë¥¼ ê°€ì ¸ì˜¤ë ¤ê³  í•˜ë©´ ì—ëŸ¬)
+            Student student = _studentMap[name];
             student.SetScore(score);
-            Debug.Log($"{name}ÀÇ Á¡¼ö°¡ {score}Á¡À¸·Î ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+            Debug.Log($"{name}ì˜ ì ìˆ˜ê°€ {score}ì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
         }
+
+        UpdateText();
+    }
+
+    public void RemoveStudent()
+    {
+        string name = _keyInputField.text;
+
+        // name keyì— í•´ë‹¹í•˜ëŠ” keyì™€ valueë¥¼ ëª¨ë‘ ì œê±°
+        // ì œê±°ê°€ ì„±ê³µí•œ ê²½ìš°
+        if (_studentMap.Remove(name) == true)
+        {
+            Debug.Log($"{name} í•™ìƒì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+        }
+
+        else
+        {
+            Debug.Log($"{name} í•™ìƒì€ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+        }
+
+        UpdateText();
+    }
+
+    public void SearchStudent()
+    {
+        string name = _keyInputField.text;
+
+        //if (_studentMap.ContainsKey(name) == true)
+        //{
+        //    Student student = _studentMap[name];
+        //    Debug.Log($"{student.Name} í•™ìƒì˜ ì ìˆ˜ëŠ” {student.Score}ì  ì…ë‹ˆë‹¤.");
+        //}
+        //else
+        //{
+        //    Debug.Log($"{name} í•™ìƒì€ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+        //}
+
+        if(_studentMap.TryGetValue(name, out Student student) == true)
+        {
+            Debug.Log($"{student.Name} í•™ìƒì˜ ì ìˆ˜ëŠ” {student.Score}ì  ì…ë‹ˆë‹¤.");
+        }
+        else
+        {
+            Debug.Log($"{name} í•™ìƒì€ ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
+        }
+    }
+
+    void UpdateText()
+    {
+        _outputText.text = "í•™ìƒ ëª©ë¡\n";
+        foreach(KeyValuePair<string, Student> pair in _studentMap)
+        {
+            _outputText.text += $" {pair.Value.Name}: {pair.Value.Score}ì \n";
+        }
+
+        /// var í‚¤ì›Œë“œ ì‚¬ìš©í•œ foreachë¬¸
+        //foreach(var pair in _studentMap)
+        //{
+        //    _outputText.text += $" {pair.Key}: {pair.Value.Score}ì \n";
+        //}
+
+        // Dictionary.Valuesë¥¼ ì‚¬ìš©í•œ foreachë¬¸
+        //foreach(Student student in _studentMap.Values)
+        //{
+        //    _outputText.text += $" {student.Name}: {student.Score}ì \n";
+        //}
     }
 
     // Start is called before the first frame update
