@@ -30,7 +30,7 @@ public class AutoAttackSkill : IHeroSkill
         if (_attackTimer >= _attackInterval)
         {
             _attackTimer = 0f;
-            _hero.Attack(_session.Enemy, _status.Damage, _status.IsCritical);  // Session에서 적을 가져와서 공격
+            _hero.Attack(_session.Enemy, _status.CalculatedDamage);  // Session에서 적을 가져와서 공격
             Debug.Log("Auto Attack!");
         }
     }
@@ -53,8 +53,8 @@ public class PowerAttackSkill : IHeroSkill
 
     public void Use()
     {
-        double pDamage = 5 * _status.Damage;
-        _session.Enemy.TakeHit(pDamage, _status.IsCritical);
+        double pDamage = 5 * _status.CalculatedDamage;
+        _session.Enemy.TakeHit(pDamage);
         _view.PowerAttackSkill();
         Debug.Log($"Power Attack! {pDamage}");
     }

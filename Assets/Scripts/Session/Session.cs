@@ -85,7 +85,7 @@ public class Session : MonoBehaviour
     /// </summary>
     public void TapAttack()
     {
-        _hero.Attack(_enemy, _heroStatus.Damage, _heroStatus.IsCritical);
+        _hero.Attack(_enemy, _heroStatus.CalculatedDamage);
     }
 
     /// <summary>

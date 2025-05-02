@@ -31,10 +31,10 @@ public class Enemy : MonoBehaviour
         _statusView.SetHpText(_status.CurrentHp);
     }
 
-    public void TakeHit(double damage, bool isCritical)
+    public void TakeHit(double damage)
     {
         // 공격받은 것에 대한 로직 처리
-        _status.TakeDamage(damage, isCritical); 
+        _status.TakeDamage(damage); 
 
         // UI 갱신(View 갱신, 유저에게 보여지는 부분 처리)
         _statusView.SetHpBar(_status.CurrentHp, _status.MaxHp);

@@ -43,9 +43,9 @@ public class Hero : MonoBehaviour
         _autoAttackSkill.Use();
     }
 
-    public void Attack(Enemy enemy, double damage, bool isCritical)
+    public void Attack(Enemy enemy, double damage)
     {
-        enemy.TakeHit(damage, isCritical);
+        enemy.TakeHit(damage);
         _view.Attack();
     }
 }

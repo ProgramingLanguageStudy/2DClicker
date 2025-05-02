@@ -84,7 +84,7 @@ public class EnemyStatus : MonoBehaviour
     // float형: 3.14f
     // double형: 3.14
 
-    public void TakeDamage(double damage, bool isCritical)
+    public void TakeDamage(double damage)
     {
         _currentHp -= damage;
 
