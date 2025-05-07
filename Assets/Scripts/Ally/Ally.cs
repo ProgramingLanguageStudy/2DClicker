@@ -1,32 +1,80 @@
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AllyType
+{
+    Archer,
+    Warrior,
+    Mages
+}
 
-// µ¿·á Ä³¸¯ÅÍ¸¦ Á¦¾îÇÏ´Â ¿ªÇÒ
-// 1. ÀÏÁ¤ ½Ã°£ °£°İÀ¸·Î ÃÑ¾ËÀ» »ı¼ºÇØ ¹ß»ç
-// 2. ·¹º§¾÷ ±â´ÉÀÌ ÀÖ¾î ·¹º§¾÷ µÇ¸é ½ºÅİ °­È­
+// ë™ë£Œ ìºë¦­í„°ë¥¼ ì œì–´í•˜ëŠ” ì—­í• 
+// 1. ì¼ì • ì‹œê°„ ê°„ê²©ìœ¼ë¡œ ì´ì•Œì„ ìƒì„±í•´ ë°œì‚¬
+// 2. ë ˆë²¨ì—… ê¸°ëŠ¥ì´ ìˆì–´ ë ˆë²¨ì—… ë˜ë©´ ìŠ¤í…Ÿ ê°•í™”
 public class Ally : MonoBehaviour
 {
-    [SerializeField] Bullet _bulletPrefab;          // ÃÑ¾Ë ÇÁ¸®ÆÕ
-    [SerializeField] Transform _bulletSpawnPoint;   // ÃÑ¾Ë »ı¼º Æ÷ÀÎÆ®
-    [SerializeField] Animator _animator;            // ¾Ö´Ï¸ŞÀÌÅÍ ÄÄÆ÷³ÍÆ® ÂüÁ¶ º¯¼ö
+    Session _session;
+    AllyData _data;
+    AllyUpgradeView _upgradeView;
 
-    [SerializeField] float _attackSpan;             // °ø°İ ½Ã°£ °£°İ(ÃÊ)
-    [SerializeField] float _bulletSpeed;            // ÃÑ¾ËÀÇ ÀÌµ¿ ¼Ó·Â
-    [SerializeField] double _damage;                // ÃÑ¾Ë µ¥¹ÌÁö
+    [SerializeField] Bullet _bulletPrefab;          // ì´ì•Œ í”„ë¦¬íŒ¹
+    [SerializeField] Transform _bulletSpawnPoint;   // ì´ì•Œ ìƒì„± í¬ì¸íŠ¸
+    [SerializeField] Animator _animator;            // ì• ë‹ˆë©”ì´í„° ì»´í¬ë„ŒíŠ¸ ì°¸ì¡° ë³€ìˆ˜
 
-    float _attackTimer;     // °ø°İ Å¸ÀÌ¸Ó
+    float _attackSpan;             // ê³µê²© ì‹œê°„ ê°„ê²©(ì´ˆ)
+    float _bulletSpeed;            // ì´ì•Œì˜ ì´ë™ ì†ë ¥
+    double _damage;                // ì´ì•Œ ë°ë¯¸ì§€
 
-    // Start is called before the first frame update
-    void Start()
+    int _level = 0;
+
+    float _attackTimer;     // ê³µê²© íƒ€ì´ë¨¸
+
+    public int Level => _level;
+
+    public void Initialize(Session session, AllyData data, AllyUpgradeView upgradeView)
     {
-        
+        _session = session;
+        _data = data;
+        _upgradeView = upgradeView;
+
+        _attackSpan = _data.AttackSpan;
+        _bulletSpeed = _data.BulletSpeed;
+
+        _attackTimer = _attackSpan;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _attackTimer -= Time.deltaTime;
+        if(_attackTimer < 0 )
+        {
+            _attackTimer = _attackSpan;
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        // ì• ë‹ˆë©”ì´ì…˜ ì²˜ë¦¬
+        _animator.SetTrigger(AnimatorParameters.OnAttack);
+
+        // ì´ì•Œ ìƒì„±
+        Bullet bullet = Instantiate(_bulletPrefab);
+        bullet.transform.position = _bulletSpawnPoint.position;
+        bullet.Initialize(_session, _session.Enemy.transform.position, _bulletSpeed, _damage);
+    }
+
+    /// <summary>
+    /// ë ˆë²¨ì„ 1 ì¦ê°€ì‹œí‚¤ëŠ” í•¨ìˆ˜
+    /// </summary>
+    public void AddLevel()
+    {
+        _level++;
+        _damage += _data.GetDamageByLevel(_level);
+
+        _upgradeView.UpdateView(_level, _damage);
     }
 }

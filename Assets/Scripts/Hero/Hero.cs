@@ -19,7 +19,7 @@ public class Hero : MonoBehaviour
     void Update()
     {
         // 자동 공격만 활성화 (자동 공격은 계속 반복되므로)
-        _autoAttackSkill.Use();
+        //_autoAttackSkill.Use();
     }
 
     public void Initialize(SessionStatus sessionStatus, Session session)

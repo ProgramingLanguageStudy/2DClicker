@@ -13,6 +13,7 @@ public class Session : MonoBehaviour
     [SerializeField] SessionView _view;
     [SerializeField] Hero _hero;
     [SerializeField] HeroStatus _heroStatus;
+    [SerializeField] AllyController _allyController;
 
     [Header("----- Enemy 생성 -----")]
     [SerializeField] Enemy[] _enemyPrefabs;                 // 적 프리팹 배열
@@ -43,6 +44,7 @@ public class Session : MonoBehaviour
     {
         _hero.Initialize(_status, this);
         _status.Initialize(_data);
+        _allyController.Initialize(this, _status);
         _view.Initialize(_data);
 
         _status.OnGoldChanged += _view.SetGoldText;
